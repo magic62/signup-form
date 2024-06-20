@@ -5,33 +5,36 @@ import Requirement from "./Form/Requirement.vue";
 </script>
 
 <template>
-    <form action="index.html" class="bg-green-900 p-4 rounded-2xl border-2 border-black">
-        <h1 class="mb-5 text-4xl text-center"><b>Create Account</b></h1>
-        <div class="flex gap-5 flex-col mb-5">
-            <div class="flex gap-5">
-                <Input name="Username" type="text" @input="validateForm" v-model:value="value.username">
-                <Requirement v-if="value.username.length" v-for="requirement in requirements.username"
-                    :text="requirement.text" :status="requirement.filter"></Requirement>
-                </Input>
-                <Input name="Email" type="text" @input="validateForm" v-model:value="value.email">
-                <Requirement v-if="value.email.length" v-for="requirement in requirements.email"
-                    :text="requirement.text" :status="requirement.filter"></Requirement>
-                </Input>
+    <div class="flex">
+        <form action="index.html" class="bg-green-900 p-5 rounded-2xl border-2 border-black">
+            <h1 class="mb-5 text-4xl text-center"><b>Create Account</b></h1>
+            <div class="flex gap-5 flex-col mb-5">
+                <div class="flex gap-5 flex-col lg:flex-row m-auto">
+                    <Input name="Username" type="text" @input="validateForm" v-model:value="value.username">
+                    <Requirement v-if="value.username.length" v-for="requirement in requirements.username"
+                        :text="requirement.text" :status="requirement.filter"></Requirement>
+                    </Input>
+                    <Input name="Email" type="text" @input="validateForm" v-model:value="value.email">
+                    <Requirement v-if="value.email.length" v-for="requirement in requirements.email"
+                        :text="requirement.text" :status="requirement.filter"></Requirement>
+                    </Input>
+                </div>
+                <div class="flex gap-5 flex-col lg:flex-row m-auto">
+                    <Input name="Password" type="password" @input="validateForm" v-model:value="value.password">
+                    <Requirement v-if="value.password.length" v-for="requirement in requirements.password"
+                        :text="requirement.text" :status="requirement.filter"></Requirement>
+                    </Input>
+                    <Input name="Verify Password" type="password" @input="validateForm"
+                        v-model:value="value.verifyPassword">
+                    <Requirement v-if="value.verifyPassword.length" v-for="requirement in requirements.verifyPassword"
+                        :text="requirement.text" :status="requirement.filter"></Requirement>
+                    </Input>
+                </div>
             </div>
-            <div class="flex gap-5">
-                <Input name="Password" type="password" @input="validateForm" v-model:value="value.password">
-                <Requirement v-if="value.password.length" v-for="requirement in requirements.password"
-                    :text="requirement.text" :status="requirement.filter"></Requirement>
-                </Input>
-                <Input name="Verify Password" type="password" @input="validateForm"
-                    v-model:value="value.verifyPassword">
-                <Requirement v-if="value.verifyPassword.length" v-for="requirement in requirements.verifyPassword"
-                    :text="requirement.text" :status="requirement.filter"></Requirement>
-                </Input>
-            </div>
-        </div>
-        <Submit class="m-auto w-1/4 flex justify-center" :disabled="checkRequirement"></Submit>
-    </form>
+            <Submit class="m-auto flex justify-center" :disabled="checkRequirement"></Submit>
+        </form>
+    </div>
+
 </template>
 
 <script>
